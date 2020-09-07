@@ -1,0 +1,53 @@
+#Gamblepot
+The Gamblepot Dapp is a gambling dapp that allows people to add money continuously to a pot. The gamblepot has a maximum value that is set via governance.
+The gamble pot mechanics are as follows. This is c++ pseudocode. I am not a solidity dev haha. The entire program should have a bunch of levers that can be set 
+by the community through use of waifu governance token votes. 
+
+class gamblepot()
+{
+  Private long funds_leak                 //set by community always ranges between 0-1 set through governance
+  Private string funds_leak_address       //set by community used to leak portion of winnings from gambling dapp to community projects
+  Private long potsize                    //set by community
+  Private long maxpotsize                 //set by community
+  Private long minpotsize                 //set by community
+  Private string last_donated_address     //set by contract
+  Private int last_donated_blockheight    //set by contract
+  Private int arbitrary_blockheight_time  //set by community
+  Private string owner                    //set by DAO
+  
+  Private Function Payout(int payment)
+  {
+    //send payment to last_donated_address 
+  }
+  Public Function setfundsleak(eth_address, long X)
+  {
+    if (eth_address==owner)
+    funds_leak=X;
+  }
+
+  Public Function redeem(blockheight)
+  {
+    long actual_payment=0;
+    long leakpayment=0;
+
+    if(((potsize > minpotsize)&&(last_donated_blockheight + arbitrary_blockheight_time > blockheight)) || (potsize > maxpotsize))
+    {    
+      leakpayment= (1-fundsleak) * (potsize-minpotsize)
+      actual_payment = fundsleak* (potsize - minpotsize)
+      Payout(leakpayment);
+      Payout(actual_payment);
+    }
+  }
+
+  Public Function donate(string donating_address, long waif_recieved, blockheight)
+  {
+    last_donated_address = donating address;
+    potsize+=waif_recieved;
+    last_donated_blockheight=blockheight;
+  }
+  Public string function return_Last_donated_address
+  {return last donated address}
+
+  Public function return_pot_size
+  {return pot_size}
+}
