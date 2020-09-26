@@ -1,7 +1,7 @@
 #Gamblepot
 The Gamblepot Dapp is a gambling dapp that allows people to add money continuously to a pot. The gamblepot has a maximum value that is set via governance.
 The gamble pot mechanics are as follows. This is c++ pseudocode. I am not a solidity dev haha. The entire program should have a bunch of levers that can be set 
-by the community through use of waifu governance token votes. 
+by the community through use of governance token votes. 
 
 class gamblepot()
 {
